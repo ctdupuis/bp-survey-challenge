@@ -13,15 +13,20 @@ handleSubmit = e => {
     let name = nameInput.value;
     let questions = document.getElementsByClassName('quest-cont');
     let object = {
+        surveyId: e.target.dataset.survey,
         name: name,
-        1: targetRadio.value
+        q1: targetRadio.value
     };
 
     
     for (let i = 1; i < questions.length; i++) {
         let children = questions[i].children;
-        object[i+1] = children[1].value;
+        object[`q${i+1}`] = children[1].value;
     }
+
+    let index = Object.keys(object).length;
+    object[`q${index-1}`] = help.checked;
+
 
     axios.post(`${URI}/survey`, object)
     .then(res => console.log(res.data))
@@ -56,9 +61,17 @@ extraHelp = (e) => {
 
 }
 
+renderSurvey = data => {
+    let head = document.createElement('h4');
+    head.innerText = data[0].title;
+    let surveyId = data[0].survey_id;
+    surForm.dataset.survey = surveyId;
+    surForm.prepend(head)
+}
+
 fetchSurvey = () => {
     axios.get(`${URI}/survey`)
-    .then(res => console.log(res.data))
+    .then(res => renderSurvey(res.data));
 }
 
 bindRadios();
