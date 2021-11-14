@@ -6,13 +6,14 @@ const app = express();
 
 const {
     root
-} = require('./controller')
+} = require('./controller');
 
 
 app.use(express.json());
 app.use(cors());
 
 const { PORT } = process.env;
+
 
 app.get("/", root);
 

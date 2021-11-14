@@ -10,7 +10,65 @@
 <body>
 
     <div class="wrapper">
-        
+        <form id="survey">
+            <label for="name">Your Name</label>
+            <input type="text" required name="name" id="name" placeholder="Enter your name here">
+
+
+            <label for="anon">or check this box to remain anonymous</label>
+            <input name="name" id="anon" type="checkbox">
+
+            <br>
+
+            <div class="quest-cont" data-id="1">
+                <span class="question">1. Rate your understanding of this week's material</span>
+    
+                <br>
+    
+                <input id="1" required class="1-radio" name="radio" type="radio" value="1">
+                <label for="1">1</label>
+    
+                <input id="2" class="1-radio" name="radio" type="radio" value="2">
+                <label for="2">2</label>
+    
+                <input id="3" class="1-radio" name="radio" type="radio" value="3">
+                <label for="3">3</label>
+    
+                <input id="4" class="1-radio" name="radio" type="radio" value="4">
+                <label for="4">4</label>
+    
+                <input id="5" class="1-radio" name="radio" type="radio" value="5">
+                <label for="5">5</label>
+            </div>
+
+            <div class="quest-cont" data-id="2">
+                <label for="pos" class="question">2. What went well for you this week?</label>
+    
+                <textarea required name="pos" id="pos"></textarea>
+    
+                
+            </div>
+
+            <div class="quest-cont" data-id="3">
+                <label for="neg" class="question">3. What went poorly for you this week?</label>
+    
+                <textarea required name="neg" id="neg"></textarea>
+    
+                
+            </div>
+
+            <div class="quest-cont" data-id="2">
+                <label for="imp" class="question">4. What would you suggest to improve moving forward?</label>
+    
+                <textarea required name="imp" id="imp"></textarea>
+    
+                
+            </div>
+
+            <button type="submit">Submit</button>
+
+        </form>
+
     </div>
 
     <script src="../node_modules/axios/dist/axios.min.js"></script>
