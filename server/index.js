@@ -5,7 +5,9 @@ const cors = require('cors');
 const app = express();
 
 const {
-    root
+    root,
+    getSurvey,
+    recordSurvey
 } = require('./controller');
 
 
@@ -16,6 +18,8 @@ const { PORT } = process.env;
 
 
 app.get("/", root);
+app.get("/survey", getSurvey);
+app.post("/survey", recordSurvey);
 
 
 app.listen(PORT, () => console.log(`App running on port ${PORT}`));

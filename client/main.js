@@ -5,6 +5,7 @@ const anonCheck = document.getElementById('anon');
 const surForm = document.getElementById('survey');
 const radios = document.getElementsByClassName('1-radio');
 let targetRadio;
+const help = document.getElementById('help');
 
 
 handleSubmit = e => {
@@ -22,7 +23,8 @@ handleSubmit = e => {
         object[i+1] = children[1].value;
     }
 
-    console.log(object);
+    axios.post(`${URI}/survey`, object)
+    .then(res => console.log(res.data))
     
     surForm.reset();
 }
@@ -42,11 +44,25 @@ bindRadios = () => {
     for (let i = 0; i < radios.length; i++) {
         radios[i].addEventListener('click', () => {
             targetRadio = radios[i]
-            console.log(targetRadio)
         })
     }
+}
+
+extraHelp = (e) => {
+    if (nameInput.value === '' || nameInput.value === 'Anonymous') {
+        help.checked = false
+        window.alert("We can't help you if we don't know who you are")
+    }
+
+}
+
+fetchSurvey = () => {
+    axios.get(`${URI}/survey`)
+    .then(res => console.log(res.data))
 }
 
 bindRadios();
 anonCheck.addEventListener('click', handleInput);
 surForm.addEventListener('submit', handleSubmit);
+help.addEventListener('click', extraHelp);
+document.addEventListener('DOMContentLoaded', fetchSurvey);
